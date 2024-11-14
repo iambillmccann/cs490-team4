@@ -1,0 +1,1 @@
+- Branch naming should follow: `task-<task-number>-<first-name>` (ex: task-12-arya)
