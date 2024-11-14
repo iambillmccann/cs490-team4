@@ -1,0 +1,5 @@
+- Class name start with capital letters
+- camelCase for variables
+- Use tabs for spacing
+- Write comments explaining certain segments of code
+- Everybody writes tests and documentation
