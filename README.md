@@ -24,9 +24,25 @@ Project uses ChatGPT AI to take inputs (Resumes) and return feedback.
 6. To run the API, in your console type in `fastapi dev backend/app.py`. This should enable the FastAPI endpoints on port 8000. To see the
    swagger with all the explanation head to <b>localhost:8000/docs</b>.
 
-# How To Test The Backend Endpoints
+# How To Run Backend Tests
 
-1. After initializing, in your console, run the command `pytest tests/backend` to run all of the backend python tests.
+1. After initializing the packages, run this command in your console: `pytest tests/backend` to run all of the backend python tests.
 
+
+# How To Write Tests For Endpoints
+
+1. Import `TestClient` from `fastapi.testclient`.
+2. Import the app from `backend/app.py`.
+3. To create a test function, write a function that start with `test_<name-of-your-test>`
+4. Test it using the command in <b>How To Run Backend Tests</b>. 
+
+
+# How To Write An Endpoint
+
+1. Create a new directory inside the `backend` subdirectory with a desired endpoint.
+2. Inside of the directory, initialize an ApiRouter.
+3. Write the desired endpoint.
+4. Import the router into `backend/app.py` and initialize it with `app.include_router(<your-endpoint>)`.
+5. Run it with `fastapi dev backend/app.py` to make sure everything is correct.
 
 <i>Good Luck Coding!</i>
