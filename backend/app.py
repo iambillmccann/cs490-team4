@@ -3,4 +3,3 @@ from fastapi import FastAPI
 
 app = FastAPI()
 app.include_router(resume_router)
-
