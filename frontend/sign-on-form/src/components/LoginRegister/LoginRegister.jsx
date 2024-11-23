@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './LoginRegister.css';
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import axios from 'axios';
+import {useNavigate } from "react-router-dom";
 
 // Function to handle login API request
 export const handleLogin = async (username, password) => {
@@ -32,6 +33,7 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
   // State for login inputs
   //loginUsername and loginPassword: Holds current value of username/password input field
   //setLoginUsername and setLoginPassword: Used to update the state values
+  const navigate = useNavigate();
   const [loginUsername, setLoginUsername] = useState(''); //useState = React Hook
   const [loginPassword, setLoginPassword] = useState('');
 
@@ -41,6 +43,11 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
+
+  const goToHome = () => {
+    //add validation
+    navigate('/resumeUpload')
+  }
   return (
     <div className={`wrapper ${action}`}>
       {/* Login Form */}
@@ -79,7 +86,7 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
             </label>
             <a href="#">Forgot password?</a>
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" onClick={goToHome}>Login</button>
           <div className="register-link">
             <p>
               Don't have an account?{' '}
