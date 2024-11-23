@@ -12,7 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('./components/assets/bg-mid.png') no-repeat;
+  background: url('./components/assets/bg-mid-3.png') no-repeat;
   background-size: cover;
   background-position: center;
 }
