@@ -1,11 +1,6 @@
-from backend.app import app
-from fastapi.testclient import TestClient
 from backend.resume_upload.resume_upload_controller import UploadResponse, JobDescriptionPayload
 from backend.models.enums import *
-from io import BytesIO
 from tests.backend.base_client import TestApiBaseClient
-
-client = TestClient(app)
 
 
 def test_upload_resume_success():
