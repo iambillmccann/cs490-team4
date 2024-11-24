@@ -158,7 +158,7 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
               I agree terms & conditions
             </label>
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" onClick={goToHome}>Register</button>
           <div className="register-link">
             <p>
               Already have an account?{' '}
