@@ -14,7 +14,6 @@ async def resume_upload(resume_file: UploadFile = File(...)) -> UploadResponse:
 
     if len(pdf_file) > max_file_size:
         return UploadResponse(message=ResumeUploadMessages.TooLarge, status=Status.Error)
-
     return UploadResponse(message=ResumeUploadMessages.ResumeUploadSuccess, status=Status.Success)
 
 
