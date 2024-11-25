@@ -1,61 +1,35 @@
+//task 6: Develop Frontend Components for Registration and Login Forms
+
 import React, { useState } from 'react';
 import './LoginRegister.css';
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
-import axios from 'axios';
 import {useNavigate } from "react-router-dom";
-
-// Function to handle login API request
-export const handleLogin = async (username, password) => {
-  try {
-    // Handles successful login
-    const response = await axios.post('/api/login', { username, password });
-    console.log('Login Success:', response.data);
-  } catch (error) {
-    // Handles login error
-    console.error('Login Error:', error.response?.data || error.message);
-  }
-};
-
-// Function to handle register API request
-export const handleRegister = async (username, email, password) => {
-  try {
-    // Handles successful registration
-    const response = await axios.post('/api/register', { username, email, password });
-    console.log('Register Success:', response.data);
-  } catch (error) {
-    // Handles registration error
-    console.error('Register Error:', error.response?.data || error.message);
-  }
-};
+import { login, register } from '../AuthenticationAPI/AuthenAPI.jsx';
 
 // Renders the login-register page
 const LoginRegister = ({ action, registerLink, loginLink }) => {
-  // State for login inputs
-  //loginUsername and loginPassword: Holds current value of username/password input field
-  //setLoginUsername and setLoginPassword: Used to update the state values
   const navigate = useNavigate();
-  const [loginUsername, setLoginUsername] = useState(''); //useState = React Hook
+  const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  // State for register inputs
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
-
-  const goToHome = () => {
-    //add validation
-    navigate('/resumeUpload')
-  }
   return (
     <div className={`wrapper ${action}`}>
       {/* Login Form */}
       <div className="form-box login">
         <form
-          onSubmit={(e) => {
-            e.preventDefault(); //prevent the page from reloading
-            handleLogin(loginUsername, loginPassword); // send the login info to backend
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const success = await login(loginUsername, loginPassword);
+            if (success) {
+              navigate('/resumeUpload'); // Redirect after successful login
+            } else {
+              alert('Login failed. Please check your credentials.');
+            }
           }}
         >
           <h1>Login</h1>
@@ -86,7 +60,7 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
             </label>
             <a href="#">Forgot password?</a>
           </div>
-          <button type="submit" onClick={goToHome}>Login</button>
+          <button type="submit">Login</button>
           <div className="register-link">
             <p>
               Don't have an account?{' '}
@@ -101,14 +75,19 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
       {/* Register Form */}
       <div className="form-box register">
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
             if (registerPassword !== registerConfirmPassword) {
               alert('Passwords do not match!');
               return;
             }
-            // send register info to backend
-            handleRegister(registerUsername, registerEmail, registerPassword);
+            const success = await register(registerUsername, registerEmail, registerPassword);
+            if (success) {
+              alert('Registration successful! Please log in.');
+              loginLink(); // Redirect to login form
+            } else {
+              alert('Registration failed. Please try again.');
+            }
           }}
         >
           <h1>Register</h1>
@@ -155,10 +134,10 @@ const LoginRegister = ({ action, registerLink, loginLink }) => {
           <div className="remember-forgot">
             <label>
               <input type="checkbox" required />
-              I agree terms & conditions
+              I agree to the terms & conditions
             </label>
           </div>
-          <button type="submit" onClick={goToHome}>Register</button>
+          <button type="submit">Register</button>
           <div className="register-link">
             <p>
               Already have an account?{' '}
