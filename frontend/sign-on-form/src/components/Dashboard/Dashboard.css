@@ -1,0 +1,93 @@
+html {
+    background-color: #f8d87c;
+}
+/* Header css */
+header {
+    width: 100%;
+    border-bottom: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+header h1 {
+    font-family: Helvetica;
+    color: white;
+    text-align: center;
+}
+/* Aside */
+aside {
+    float: left;
+    width: 250px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    height: 84%;
+}
+#sidebuttons {
+    list-style-type: none;
+    float: left;
+}
+#sidebuttons li {
+    background-color: rgba(127, 127, 127, 0.5);
+    font-size: 125%;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+#sidebuttons li a {
+    text-decoration: none;
+    color: black;
+    font-family: Helvetica;
+}
+/* Section */
+#boxes {
+    column-count: 2;
+    height: 85%;
+    margin-left: 250px;
+}
+#s1 {
+    float: left;
+    display: grid;
+    grid-row: 50% 50%;
+    width: 100%;
+}
+#s2 {
+    float: right;
+    display: grid;
+    width: 100%;
+}
+
+section div {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px;
+    width: 90%;
+}
+#fit_chart {
+    height: 400px;
+    font-family:'Trebuchet MS', sans-serif;
+    color: white;
+}
+#matches {
+    height: 200px;
+    font-family:'Trebuchet MS', sans-serif;
+    color: white;
+}
+#improvements {
+    height: 700px;
+    font-family:'Trebuchet MS', sans-serif;
+    color: white;
+}
+/* Footer */
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid black;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: Helvetica;
+}
