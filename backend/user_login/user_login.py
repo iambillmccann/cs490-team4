@@ -1,4 +1,4 @@
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter
 from pydantic import BaseModel, EmailStr
 from backend.models.enums import *
 import jwt
@@ -39,4 +39,4 @@ async def login_user(payload: LoginPayload):
         data={"sub": payload.email}, expires_delta=timedelta(hours=1)
     )
 
-    return {"token": token}  # MIGHT ADD A RESPONSE MESSAGE
+    return LoginResponse(token=token, status=Status.Success)

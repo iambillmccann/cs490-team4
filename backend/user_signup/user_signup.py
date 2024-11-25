@@ -1,4 +1,4 @@
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter
 from pydantic import BaseModel, EmailStr
 from backend.models.enums import *
 import bcrypt
@@ -29,7 +29,7 @@ class SignupResponse(BaseModel):
     status: str
 
 
-@user_router.post("/api/signup")
+@signup_router.post("/api/signup")
 async def user_signup(user: UserSignupPayload) -> SignupResponse:
     if user.email in accounts_storage:
         return SignupResponse(message=UserSignUp.EmailExists, status=Status.Error.value)
@@ -38,7 +38,7 @@ async def user_signup(user: UserSignupPayload) -> SignupResponse:
     accounts_storage[user.email] = {
         "username": user.username,
         "email": user.email,
-        "password": user.password,
+        "password": hashed_password,
     }
 
     return SignupResponse(
