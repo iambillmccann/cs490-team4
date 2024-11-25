@@ -49,4 +49,4 @@ class TestApiBaseClient(TestClient):
             response = self.post(url, json=LoginPayload(**payload).model_dump())
             return LoginResponse(**response.json())
         else:
-            return
+            return ''
