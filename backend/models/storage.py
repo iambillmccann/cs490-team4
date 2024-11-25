@@ -8,13 +8,9 @@ class TempStorage:
     def __generate_uid(self) -> str:
         return str(uuid4())
 
-    def create(self, resume_text: str, job_description: str) -> str:
+    def create(self, to_save: dict) -> str:
         session_uid = self.__generate_uid()
-        self.__storage[session_uid] = {
-            "resume_text": resume_text,
-            "job_description": job_description
-        }
-
+        self.__storage[session_uid] = to_save
         return session_uid
 
     def read(self, session_uid: str) -> dict:
@@ -25,18 +21,3 @@ class TempStorage:
             del self.__storage[session_uid]
             return True
         return False
-
-    def update(self, session_uid: str, resume_text: str, job_description: str) -> bool | str:
-        if session_uid in self.__storage:
-            if resume_text and job_description:
-                self.__storage[session_uid] = {
-                    "resume_text": resume_text,
-                    "job_description": job_description
-                }
-            elif resume_text:
-                self.__storage[session_uid]["resume_text"] = resume_text
-            elif job_description:
-                self.__storage[session_uid]["job_description"] = job_description
-            else:
-                return False
-            return session_uid
