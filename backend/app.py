@@ -2,6 +2,7 @@ from backend.resume_upload.resume_upload import resume_router
 from backend.user_login.user_login import login_router
 from backend.user_signup.user_signup import signup_router
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 app.include_router(resume_router)
