@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 // Login Function
 export const login = async (username, password) => {
   try {
-    const response = await axios.post('/api/login', { username, password });
+    const response = await axios.post('http://localhost:8000/api/login', { username, password });
     const { token } = response.data;
     localStorage.setItem('token', token); // Save JWT to localStorage
     console.log('Login successful:', token);
@@ -20,7 +20,7 @@ export const login = async (username, password) => {
 // Register Function
 export const register = async (username, email, password) => {
   try {
-    const response = await axios.post('/api/register', { username, email, password });
+    const response = await axios.post('http://localhost:8000/api/signup', { username, email, password });
     console.log('Registration successful:', response.data);
     return true;
   } catch (error) {
