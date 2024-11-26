@@ -46,3 +46,7 @@ Project uses ChatGPT AI to take inputs (Resumes) and return feedback.
 5. Run it with `fastapi dev backend/app.py` to make sure everything is correct.
 
 <i>Good Luck Coding!</i>
+
+# FrontEnd Instructions
+
+- Navigate to `frontend/sign-on-form` for a detailed read me about running the react project
