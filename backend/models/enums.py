@@ -16,7 +16,7 @@ class ResumeUploadMessages(Enum):
     JobDescriptionUploadFailure = "Job description exceeds character limit."
 
 
-class UserSignUp(Enum):
+class UserSignUpMessages(Enum):
     EmailExists = "Email already exists."
     RegisteredSuccessfully = "User registered successfully."
 

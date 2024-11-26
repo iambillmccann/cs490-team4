@@ -32,7 +32,7 @@ class SignupResponse(BaseModel):
 @signup_router.post("/api/signup")
 async def user_signup(user: UserSignupPayload) -> SignupResponse:
     if user.email in accounts_storage:
-        return SignupResponse(message=UserSignUp.EmailExists, status=Status.Error.value)
+        return SignupResponse(message=UserSignUpMessages.EmailExists, status=Status.Error.value)
 
     hashed_password = hash_password(user.password)
     accounts_storage[user.email] = {
@@ -42,5 +42,5 @@ async def user_signup(user: UserSignupPayload) -> SignupResponse:
     }
 
     return SignupResponse(
-        message=UserSignUp.RegisteredSuccessfully, status=Status.Success.value
+        message=UserSignUpMessages.RegisteredSuccessfully, status=Status.Success.value
     )

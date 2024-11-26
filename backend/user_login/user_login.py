@@ -29,11 +29,11 @@ def create_jwt_token(data: dict, expires_delta: timedelta):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-@login_router.post("/api/login", response_model=LoginResponse)
+@login_router.post("/api/login")
 async def login_user(payload: LoginPayload):
     user = accounts_storage.get(payload.email)
     if not user or not verify_password(payload.password, user["password"]):
-        return LoginResponse(message=UserLogin.InvalidCredentials, status=Status.Error)
+        return LoginResponse(token="", status=Status.Error.value)
 
     token = create_jwt_token(
         data={"sub": payload.email}, expires_delta=timedelta(hours=1)

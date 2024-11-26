@@ -2,8 +2,8 @@ from backend.app import app
 from fastapi.testclient import TestClient
 from io import BytesIO
 from backend.resume_upload.resume_upload_controller import UploadResponse, JobDescriptionPayload
-from backend.user_signup.user_signup import UserSignupPayload
 from backend.user_login.user_login import LoginPayload, LoginResponse
+from backend.user_signup.user_signup import SignupResponse, UserSignupPayload
 
 
 class TestApiBaseClient(TestClient):
@@ -38,14 +38,14 @@ class TestApiBaseClient(TestClient):
             payload = {"username": username, "email": email, "password": password}
             url = self.url('signup')
             response = self.post(url, json=UserSignupPayload(**payload).model_dump())
-            return UploadResponse(**response.json())
+            return SignupResponse(**response.json())
         else:
             return
 
     def login_user(self, email: str, password: str):
         if email is not None and password is not None:
             payload = {"email": email, "password": password}
-            url = self.url('signup')
+            url = self.url('login')
             response = self.post(url, json=LoginPayload(**payload).model_dump())
             return LoginResponse(**response.json())
         else:

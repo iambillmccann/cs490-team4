@@ -2,15 +2,13 @@ from backend.models.storage import TempStorage
 
 
 def test_temp_storage():
-    resume_text = "Resume Text"
-    job_description = "Job Description"
     storage = TempStorage()
-    storage_uid = storage.create(resume_text, job_description)
+    to_store = {"resume_text": "Resume text", "job_description": "Job Description"}
+    storage_uid = storage.create(to_store)
     assert storage.read(storage_uid) is not None
 
     data = storage.read(storage_uid)
-    assert data["resume_text"] == resume_text
-    assert data["job_description"] == job_description
+    assert data == to_store
 
     clear = storage.delete(storage_uid)
     assert clear is True
